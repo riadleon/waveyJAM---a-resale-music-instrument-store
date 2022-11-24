@@ -37,10 +37,18 @@ const AddProduct = () => {
                     const product = {
                         name: data.name,
                         category: data.category,
-                        categoryID: data.category.id,
+                        categoryID: data.id,
                         image: imgData.data.url,
                         location: data.location,
                         resalePrice: data.resalePrice,
+                        originalPrice: data.originalPrice,
+                        sellerName: data.sname,
+                        number: data.number,
+                        uses: data.uses,
+                        time: data.time,
+
+
+
                     }
 
                     // save product information to the database
@@ -56,7 +64,7 @@ const AddProduct = () => {
                         .then(result => {
                             console.log(result);
                             toast.success(`${data.name} is added successfully`);
-                            navigate('/dashboard/myProducts')
+                            navigate('/dashboard/myProduct')
                         })
                 }
             })
@@ -69,7 +77,7 @@ const AddProduct = () => {
     return (
         <div className='w-96 p-7'>
             <h2 className="text-4xl">Add A Product</h2>
-            <form className='flex flex-row gap-5' onSubmit={handleSubmit(handleAddProduct)}>
+            <form className='grid grid-cols-2 gap-5' onSubmit={handleSubmit(handleAddProduct)}>
                 <div>
                     <div className="form-control w-full max-w-xs">
                         <label className="label"> <span className="label-text">Name</span></label>
@@ -108,18 +116,18 @@ const AddProduct = () => {
                         {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
                     </div>
                     <div className="form-control w-full max-w-xs">
-                        <label className="label"> <span className="label-text">Name</span></label>
-                        <input type="text" {...register("name", {
-                            required: "Name is Required"
+                        <label className="label"> <span className="label-text">Seller Name</span></label>
+                        <input type="text" {...register("sname", {
+                            required: "Seller Name is Required"
                         })} className="flex-1 py-2 border-b-2 border-gray-400 focus:border-primary placeholder-gray-400 outline-none" />
                         {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
                     </div>
                 </div>
                 <div>
                     <div className="form-control w-full max-w-xs">
-                        <label className="label"> <span className="label-text">Location</span></label>
-                        <input type="text" {...register("location", {
-                            required: "location is Required"
+                        <label className="label"> <span className="label-text">Number</span></label>
+                        <input type="number" {...register("number", {
+                            required: "Number is Required"
                         })} className="flex-1 py-2 border-b-2 border-gray-400 focus:border-primary placeholder-gray-400 outline-none" />
                         {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
                     </div>
@@ -130,9 +138,30 @@ const AddProduct = () => {
                         })} className="flex-1 py-2 border-b-2 border-gray-400 focus:border-primary placeholder-gray-400 outline-none" />
                         {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
                     </div>
+                    <div className="form-control w-full max-w-xs">
+                        <label className="label"> <span className="label-text">Original Price</span></label>
+                        <input type="text" {...register("originalPrice", {
+                            required: "Original Price"
+                        })} className="flex-1 py-2 border-b-2 border-gray-400 focus:border-primary placeholder-gray-400 outline-none" />
+                        {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
+                    </div>
+                    <div className="form-control w-full max-w-xs">
+                        <label className="label"> <span className="label-text">Years of uses</span></label>
+                        <input type="number" {...register("uses", {
+                            required: "Years of uses"
+                        })} className="flex-1 py-2 border-b-2 border-gray-400 focus:border-primary placeholder-gray-400 outline-none" />
+                        {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
+                    </div>
+                    <div className="form-control w-full max-w-xs">
+                        <label className="label"> <span className="label-text">Posted Time</span></label>
+                        <input type="time" {...register("time", {
+                            required: "Years of uses"
+                        })} className="flex-1 py-2 border-b-2 border-gray-400 focus:border-primary placeholder-gray-400 outline-none" />
+                        {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
+                    </div>
                 </div>
                 <div>
-                    <input className='btn btn-accent w-full mt-4' value="Add Product" type="submit" />
+                    <input className='btn btn-accent w-full mt-4 items-center' value="Add Product" type="submit" />
                 </div>
             </form>
         </div>
