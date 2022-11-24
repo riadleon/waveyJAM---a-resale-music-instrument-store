@@ -1,91 +1,140 @@
+import { useQuery } from '@tanstack/react-query';
 import React from 'react';
+import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
+import Loading from '../../Shared/Loading/Loading';
 
 const AddProduct = () => {
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const product = {
-            name: e.target.name.value,
-            price: parseInt(e.target.price.value),
-            image: e.target.image.value,
-            location: e.target.location.value
-        };
+    const { register, handleSubmit, formState: { errors } } = useForm();
 
-        fetch("http://localhost:8000/products", {
-            method: "POST",
-            headers: {
-                "content-type": "application/json"
-            },
-            body: JSON.stringify(product)
-        }).then(res => res.json())
-            .then(data => {
-                if (data.success) {
-                    toast.success(data.message);
-                } else {
-                    toast.error(data.error);
+    const imageHostKey = '7d7fa16a5c1e6c7aa50443a390e2178e';
+
+    const navigate = useNavigate();
+
+    const { data: categories, isLoading } = useQuery({
+        queryKey: ['category'],
+        queryFn: async () => {
+            const res = await fetch('http://localhost:8000/categories');
+            const data = await res.json();
+            return data;
+        }
+    })
+
+    const handleAddProduct = data => {
+        const image = data.image[0];
+        const formData = new FormData();
+        formData.append('image', image);
+        const url = `https://api.imgbb.com/1/upload?key=${imageHostKey}`
+        fetch(url, {
+            method: 'POST',
+            body: formData
+        })
+            .then(res => res.json())
+            .then(imgData => {
+                if (imgData.success) {
+                    console.log(imgData.data.url);
+                    const product = {
+                        name: data.name,
+                        category: data.category,
+                        categoryID: data.category.id,
+                        image: imgData.data.url,
+                        location: data.location,
+                        resalePrice: data.resalePrice,
+                    }
+
+                    // save product information to the database
+                    fetch('http://localhost:8000/products', {
+                        method: 'POST',
+                        headers: {
+                            'content-type': 'application/json',
+                            // authorization: `bearer ${localStorage.getItem('accessToken')}`
+                        },
+                        body: JSON.stringify(product)
+                    })
+                        .then(res => res.json())
+                        .then(result => {
+                            console.log(result);
+                            toast.success(`${data.name} is added successfully`);
+                            navigate('/dashboard/myProducts')
+                        })
                 }
             })
-            .catch(err => {
-                toast.error(err.message);
-            })
+    }
 
-    };
+    if (isLoading) {
+        return <Loading></Loading>
+    }
+
     return (
-        <div className="py-32 px-10 min-h-screen w-full">
-            <div className="bg-secondary p-10 md:w-3/4 lg:w-1/2 mx-auto">
-                <form onSubmit={handleSubmit}>
-                    <div className="flex items-center mb-5">
-                        <label className="inline-block w-40 mr-6 text-right font-bold">
-                            Product Name
-                        </label>
-                        <input
-                            type="text"
-                            name="name"
-                            placeholder="Name"
-                            className="flex-1 py-2 border-b-2 border-gray-400 focus:border-primary placeholder-gray-400 outline-none"
-                        />
+        <div className='w-96 p-7'>
+            <h2 className="text-4xl">Add A Product</h2>
+            <form className='flex flex-row gap-5' onSubmit={handleSubmit(handleAddProduct)}>
+                <div>
+                    <div className="form-control w-full max-w-xs">
+                        <label className="label"> <span className="label-text">Name</span></label>
+                        <input type="text" {...register("name", {
+                            required: "Name is Required"
+                        })} className="flex-1 py-2 border-b-2 border-gray-400 focus:border-primary placeholder-gray-400 outline-none" />
+                        {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
                     </div>
-                    <div className="flex items-center mb-5">
-                        <label className="inline-block w-40 mr-6 text-right font-bold">
-                            Location
-                        </label>
-                        <input
-                            type="text"
-                            name="location"
-                            placeholder="Location"
-                            className="flex-1 py-2 border-b-2 border-gray-400 focus:border-primary placeholder-gray-400 outline-none"
-                        />
-                    </div>
+                    <div className="form-control w-full max-w-xs">
+                        <label className="label"> <span className="label-text">Category</span></label>
+                        <select
+                            {...register('category')}
+                            className="flex-1 py-2 border-b-2 border-gray-400 focus:border-primary placeholder-gray-400 outline-none">
+                            {
+                                categories.map(category => <option
+                                    key={category._id}
+                                    value={category.category_name}
+                                >{category.category_name}</option>)
+                            }
 
-                    <div className="flex items-center mb-5">
-                        <label className="inline-block w-40 mr-6 text-right font-bold">
-                            Price
-                        </label>
-                        <input
-                            type="text"
-                            name="price"
-                            placeholder="price"
-                            className="flex-1 py-2 border-b-2 border-gray-400 focus:border-primary placeholder-gray-400 outline-none"
-                        />
-                    </div>
 
-                    <div className="flex items-center mb-10">
-                        <label className="inline-block w-40 mr-6 text-right font-bold">
-                            Image
-                        </label>
-                        <input
-                            type="text"
-                            name="image"
-                            placeholder="url"
-                            className="flex-1 py-2 border-b-2 border-gray-400 focus:border-primary placeholder-gray-400 outline-none"
-                        />
+                        </select>
                     </div>
-
-                    <div className="text-right">
-                        <button className="py-3 px-8 bg-primary text-white font-bold">Add</button>
+                    <div className="form-control w-full max-w-xs">
+                        <label className="label"> <span className="label-text">Photo</span></label>
+                        <input type="file" {...register("image", {
+                            required: "Photo is Required"
+                        })} className="flex-1 py-2 border-b-2 border-gray-400 focus:border-primary placeholder-gray-400 outline-none" />
+                        {errors.img && <p className='text-red-500'>{errors.img.message}</p>}
                     </div>
-                </form>
-            </div>
+                    <div className="form-control w-full max-w-xs">
+                        <label className="label"> <span className="label-text">Location</span></label>
+                        <input type="text" {...register("location", {
+                            required: "location is Required"
+                        })} className="flex-1 py-2 border-b-2 border-gray-400 focus:border-primary placeholder-gray-400 outline-none" />
+                        {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
+                    </div>
+                    <div className="form-control w-full max-w-xs">
+                        <label className="label"> <span className="label-text">Name</span></label>
+                        <input type="text" {...register("name", {
+                            required: "Name is Required"
+                        })} className="flex-1 py-2 border-b-2 border-gray-400 focus:border-primary placeholder-gray-400 outline-none" />
+                        {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
+                    </div>
+                </div>
+                <div>
+                    <div className="form-control w-full max-w-xs">
+                        <label className="label"> <span className="label-text">Location</span></label>
+                        <input type="text" {...register("location", {
+                            required: "location is Required"
+                        })} className="flex-1 py-2 border-b-2 border-gray-400 focus:border-primary placeholder-gray-400 outline-none" />
+                        {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
+                    </div>
+                    <div className="form-control w-full max-w-xs">
+                        <label className="label"> <span className="label-text">Resale Price</span></label>
+                        <input type="text" {...register("resalePrice", {
+                            required: "Resale Price"
+                        })} className="flex-1 py-2 border-b-2 border-gray-400 focus:border-primary placeholder-gray-400 outline-none" />
+                        {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
+                    </div>
+                </div>
+                <div>
+                    <input className='btn btn-accent w-full mt-4' value="Add Product" type="submit" />
+                </div>
+            </form>
         </div>
     );
 };

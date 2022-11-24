@@ -4,6 +4,7 @@ import Main from "../../Layout/Main";
 import AddProduct from "../../Pages/Dashboard/AddProducts/AddProduct";
 import Dashboard from "../../Pages/Dashboard/Dashboard/Dashboard";
 import MyOrders from "../../Pages/Dashboard/MyOrders/MyOrders";
+import MyProducts from "../../Pages/Dashboard/MyProducts/MyProducts";
 import Home from "../../Pages/Home/Home";
 import Login from "../../Pages/Login/Login";
 import SignUp from "../../Pages/Signup/SignUp";
@@ -44,7 +45,12 @@ const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/addProducts',
-                element: <AddProduct></AddProduct>
+                element: <AddProduct></AddProduct>,
+                loader: () => fetch('http://localhost:8000/categories'),
+            },
+            {
+                path: '/dashboard/myProduct',
+                element: <MyProducts></MyProducts>
             },
 
         ]
