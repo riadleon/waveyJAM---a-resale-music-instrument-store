@@ -2,6 +2,7 @@ import React from 'react';
 
 const CardCategoryProduct = ({ product }) => {
     const { image, location, name, number, originalPrice, resalePrice, sellerName, time, uses, _id } = product;
+    
     return (
         <div className="card lg:card-side bg-neutral ">
             <figure><img className='w-96 h-96' src={image} alt="Product" /></figure>

@@ -25,6 +25,7 @@ const router = createBrowserRouter([
                 path: '/categories/:id',
                 element: <CategoryProduct></CategoryProduct>,
                 loader: ({ params }) => fetch(`http://localhost:8000/categories/${params.id}`)
+                ,
             },
             {
                 path: '/login',
@@ -56,7 +57,8 @@ const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/myProduct',
-                element: <MyProducts></MyProducts>
+                element: <MyProducts></MyProducts>,
+                loader: () => fetch('http://localhost:8000/products'),
             },
 
         ]
