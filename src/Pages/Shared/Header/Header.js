@@ -23,7 +23,7 @@ const Header = () => {
     </React.Fragment>
 
     return (
-        <div className="navbar fixed inset-x-0 bg-neutral text-primary ">
+        <div className="navbar  inset-x-0 bg-neutral text-primary ">
             <div className="navbar-start {...(isHome && navBg ? { backgroundColor: '#00008' : {})}" >
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
