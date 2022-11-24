@@ -6,7 +6,7 @@ import { useLoaderData, useNavigate } from 'react-router-dom';
 import Loading from '../../Shared/Loading/Loading';
 
 const AddProduct = () => {
-   
+
 
     const { register, handleSubmit, formState: { errors } } = useForm();
 
@@ -38,7 +38,7 @@ const AddProduct = () => {
                     console.log(imgData.data.url);
                     const product = {
                         name: data.name,
-                        category_id: data.category,
+                        id: data.category,
                         image: imgData.data.url,
                         location: data.location,
                         resalePrice: data.resalePrice,
