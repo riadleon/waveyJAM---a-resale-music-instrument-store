@@ -2,10 +2,12 @@ import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import { useNavigate } from 'react-router-dom';
+import { useLoaderData, useNavigate } from 'react-router-dom';
 import Loading from '../../Shared/Loading/Loading';
 
 const AddProduct = () => {
+   
+
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const imageHostKey = '7d7fa16a5c1e6c7aa50443a390e2178e';
@@ -36,8 +38,7 @@ const AddProduct = () => {
                     console.log(imgData.data.url);
                     const product = {
                         name: data.name,
-                        category: data.category,
-                        categoryID: data.id,
+                        category_id: data.category,
                         image: imgData.data.url,
                         location: data.location,
                         resalePrice: data.resalePrice,
@@ -94,7 +95,7 @@ const AddProduct = () => {
                             {
                                 categories.map(category => <option
                                     key={category._id}
-                                    value={category.category_name}
+                                    value={category._id}
                                 >{category.category_name}</option>)
                             }
 
