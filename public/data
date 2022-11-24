@@ -1,0 +1,23 @@
+[
+    {
+        "title": "Website Scanning",
+        "img": "https://cdn.cyberpunk.rs/wp-content/uploads/2019/11/skipfish_background.jpg",
+        "price": "20.00",
+        "description": "Sometimes, it is necessary to use invasive scans when checking for vulnerabilities such as stored or persistent XSS attacks, where junk input is injected into a web application. In a stored XSS attack, an application is vulnerable if it does not validate the input before storing and embedding it. A garbage input is then stored and served to users automatically when they visit your web page. When a website vulnerability scanner uses an invasive technique to scan for this issue, it may pose the risk of running this issue on the website forever and exposing it to the attackers.!",
+        "rating": "4.5"
+    },
+    {
+        "title": "Malware Removal",
+        "img": "https://www.malcare.com/wp-content/uploads/2022/01/feature-01-1.png",
+        "price": "20.00",
+        "description": "Malware is any malicious code or program thats been installed onto a website intending to cause harm to a web system. Hackers use bots to find vulnerabilities on a site and then exploit them using different types of attack methods. Once malicious content is installed, website performance can begin to decline quickly making it necessary to take immediate action. Site lock makes removal easy. Our security solution automatically finds and removes malware and will keep your site clean moving forward.",
+        "rating": "4.0"
+    },
+    {
+        "title": "Cloud Security",
+        "img": "https://www.kaspersky.com/content/en-global/images/repository/isc/2020/what-is-cloud-security01.jpg",
+        "price": "200.00",
+        "description": "Cloud security is the whole bundle of technology, protocols, and best practices that protect cloud computing environments, applications running in the cloud, and data held in the cloud. Securing cloud services begins with understanding what exactly is being secured, as well as, the system aspects that must be managed.As an overview, backend development against security vulnerabilities is largely within the hands of cloud service providers. Aside from choosing a security-conscious provider, clients must focus mostly on proper service configuration and safe use habits. Additionally, clients should be sure that any end-user hardware and networks are properly secured.!",
+        "rating": "4.5"
+    }
+]
