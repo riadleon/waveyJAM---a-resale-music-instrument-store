@@ -23,7 +23,7 @@ const Header = () => {
     </React.Fragment>
 
     return (
-        <div className="navbar  inset-x-0 bg-neutral text-primary ">
+        <div className="navbar bg-transparent text-primary ">
             <div className="navbar-start {...(isHome && navBg ? { backgroundColor: '#00008' : {})}" >
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -52,7 +52,7 @@ const Header = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-               <Link to='/blogs' className="btn">Blogs</Link>
+                <Link to='/blogs' className="btn">Blogs</Link>
             </div>
         </div>
     );
