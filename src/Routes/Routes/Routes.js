@@ -8,6 +8,7 @@ import MyOrders from "../../Pages/Dashboard/MyOrders/MyOrders";
 import MyProducts from "../../Pages/Dashboard/MyProducts/MyProducts";
 import Home from "../../Pages/Home/Home";
 import Login from "../../Pages/Login/Login";
+import Blogs from "../../Pages/Shared/Blogs/Blogs";
 import SignUp from "../../Pages/Signup/SignUp";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
             {
                 path: '/',
                 element: <Home></Home>
+            },
+            {
+                path: '/blogs',
+                element: <Blogs></Blogs>
             },
             {
                 path: '/categories/:id',
