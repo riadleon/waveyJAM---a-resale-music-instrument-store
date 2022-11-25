@@ -7,7 +7,7 @@ import Header from '../Pages/Shared/Header/Header';
 
 const DashboardLayout = () => {
     const { user } = useContext(AuthContext);
-    // const [isAdmin] = useAdmin(user?.email)
+    const [isAdmin] = useAdmin(user?.email)
     return (
         <div>
             <Header></Header>
@@ -20,18 +20,16 @@ const DashboardLayout = () => {
                     <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
                     <ul className="menu p-4 w-80 text-base-content">
                         <li><Link to="/dashboard">My Orders</Link></li>
-                        {/* {
+                        {
                             isAdmin && <>
-                                <li><Link to="/dashboard/allusers">All users</Link></li>
-                                <li><Link to="/dashboard/adddoctor">Add A Doctor</Link></li>
-                                <li><Link to="/dashboard/managedoctors">Manage Doctors</Link></li>
+                                <li><Link to="/dashboard/allSellers">All Seller</Link></li>
+                                <li><Link to="/dashboard/allBuyers">All Buyers</Link></li>
+                                <li><Link to="/dashboard/reportedItems">Reported Items</Link></li>
                             </>
-                        } */}
+                        }
                         <li><Link to="/dashboard/addProducts">Add Products</Link></li>
                         <li><Link to="/dashboard/myProduct">My Product</Link></li>
-                        <li><Link to="/dashboard/allSellers">All Seller</Link></li>
-                        <li><Link to="/dashboard/allBuyers">All Buyers</Link></li>
-                        <li><Link to="/dashboard/reportedItems">Reported Items</Link></li>
+
 
                     </ul>
 
