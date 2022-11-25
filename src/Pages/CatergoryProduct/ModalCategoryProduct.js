@@ -12,14 +12,15 @@ const ModalCategoryProduct = ({ product, setProduct, refetch }) => {
         const name = form.name.value;
         const email = form.email.value;
         const phone = form.phone.value;
+        const location = form.location.value;
 
         const productBooking = {
             product: productName,
             Seller: name,
             email,
             phone,
-             resalePrice,
-             originalPrice,
+            resalePrice,
+            location
         }
 
         // TODO: send data to the server
@@ -37,7 +38,7 @@ const ModalCategoryProduct = ({ product, setProduct, refetch }) => {
                 console.log(data);
                 if (data.acknowledged) {
                     setProduct(null);
-                    toast.success('Product Booking confirmed');
+                    toast.success('Item Booked');
 
                 }
                 else {
@@ -53,12 +54,20 @@ const ModalCategoryProduct = ({ product, setProduct, refetch }) => {
             <div className="modal mx-12">
                 <div className="modal-box relative">
                     <label htmlFor="booking-modal" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-                    <h3 className="text-lg font-bold">{productName}</h3>
+                    <h3 className="">Product Name : <span className='text-lg font-bold'>{productName}</span> </h3>
                     <form onSubmit={handleProductBooking} className='grid grid-cols-1 gap-3 mt-10'>
                         <label htmlFor="name">Name</label>
                         <input name="name" type="text" defaultValue={user?.displayName} disabled placeholder="Your Name" className="input w-full input-bordered" />
+                        <label htmlFor="email">Email</label>
                         <input name="email" type="email" defaultValue={user?.email} disabled placeholder="Email Address" className="input w-full input-bordered" />
-                        {/* <input name=" resalePrice" type="number" defaultValue={resalePrice} disabled placeholder="Email Address" className="input w-full input-bordered" /> */}
+                        <label htmlFor="resalePrice">Price</label>
+                        <input name=" resalePrice" type="number" defaultValue={resalePrice} disabled placeholder="Email Address" className="input w-full input-bordered" />
+
+                        <label htmlFor="phone">Phone Number</label>
+                        <input name="phone" type="number" placeholder="Add Your Phone Number" className="input w-full input-bordered" />
+
+                        <label htmlFor="location">Location</label>
+                        <input name="location" type="text" placeholder="Your Location?" className="input w-full input-bordered" />
                         <br />
                         <input className='btn btn-secondary w-full' type="submit" value="Submit" />
                     </form>
