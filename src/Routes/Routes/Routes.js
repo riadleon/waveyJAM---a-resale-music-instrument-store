@@ -9,6 +9,7 @@ import MyProducts from "../../Pages/Dashboard/MyProducts/MyProducts";
 import Home from "../../Pages/Home/Home";
 import Login from "../../Pages/Login/Login";
 import Blogs from "../../Pages/Shared/Blogs/Blogs";
+import ErrorPage from "../../Pages/Shared/ErrorPage/ErrorPage";
 import SignUp from "../../Pages/Signup/SignUp";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
@@ -17,6 +18,7 @@ const router = createBrowserRouter([
     {
         path: '/',
         element: <Main></Main>,
+        errorElement: <ErrorPage></ErrorPage>,
         children: [
             {
                 path: '/',
@@ -44,7 +46,7 @@ const router = createBrowserRouter([
     },
     {
         path: '/dashboard',
-        // errorElement: <DisplayError></DisplayError>,
+        errorElement: <ErrorPage></ErrorPage>,
         element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
         children: [
             {
