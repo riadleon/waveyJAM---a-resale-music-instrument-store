@@ -1,8 +1,8 @@
 import React from 'react';
 
-const CardCategoryProduct = ({ product }) => {
+const CardCategoryProduct = ({ product, setProduct }) => {
     const { image, location, name, number, originalPrice, resalePrice, sellerName, time, uses, _id } = product;
-    console.log(product.length);
+
 
     return (
         <div className="card lg:card-side bg-neutral m-5">
@@ -16,8 +16,12 @@ const CardCategoryProduct = ({ product }) => {
                 <p>Phone Number: {number}</p>
                 <p>Years Of Uses: {uses}Years</p>
                 <p>Posted Time: {time}</p>
-                <div className="card-actions justify-end">
-                    <button className="btn btn-primary">Book Now</button>
+                <div className="card-actions justify-center">
+                    <label
+                        htmlFor="booking-modal"
+                        className="btn btn-primary text-white"
+                        onClick={() => setProduct(product)}
+                    >Book Appointment</label>
                 </div>
             </div>
         </div>
