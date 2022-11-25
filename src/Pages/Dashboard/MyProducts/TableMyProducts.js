@@ -13,13 +13,13 @@ const TableMyProducts = ({ product }) => {
                         </div>
                     </div>
                     <div>
-                        <div className="font-bold">{sellerName}</div>
+                        <div className="font-bold">{name}</div>
                         {/* <div className="text-sm opacity-50">United States</div> */}
                     </div>
                 </div>
             </td>
             <td>
-                {name}
+                {sellerName}
                 <br />
                 {/* <span className="badge badge-ghost badge-sm">Desktop Support Technician</span> */}
             </td>
@@ -27,7 +27,7 @@ const TableMyProducts = ({ product }) => {
             <td>{location}</td>
             <td>{resalePrice}</td>
             <td>{originalPrice}</td>
-            <td>{time} am</td>
+            <td>{time} </td>
             {/* <th>
                 <button onClick={() => handleEdit(_id)} className="btn btn-ghost btn-xs bg-teal-800 text-white">Edit</button>
                 <button onClick={() => handleDelete(_id)} className="btn btn-ghost btn-xs bg-rose-800 text-white">Delete</button>

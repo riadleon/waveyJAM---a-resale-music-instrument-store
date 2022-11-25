@@ -2,21 +2,22 @@ import React from 'react';
 
 const CardCategoryProduct = ({ product }) => {
     const { image, location, name, number, originalPrice, resalePrice, sellerName, time, uses, _id } = product;
-    
+    console.log(product.length);
+
     return (
-        <div className="card lg:card-side bg-neutral ">
-            <figure><img className='w-96 h-96' src={image} alt="Product" /></figure>
+        <div className="card lg:card-side bg-neutral m-5">
+            <figure><img className='w-4/4 h-96' src={image} alt="Product" /></figure>
             <div className="card-body">
-                <h2 className="card-title">{name}</h2>
-                <p>{location}</p>
-                <p>{originalPrice}</p>
-                <p>{resalePrice}</p>
-                <p>{sellerName}</p>
-                <p>{number}</p>
-                <p>{uses}</p>
-                <p>{time}</p>
+                <h2 className="card-title text-center">{name}</h2>
+                <p>Location: {location}</p>
+                <p>Original Price: ${originalPrice}</p>
+                <p>Resale Price: ${resalePrice}</p>
+                <p>Seller Name: {sellerName}</p>
+                <p>Phone Number: {number}</p>
+                <p>Years Of Uses: {uses}Years</p>
+                <p>Posted Time: {time}</p>
                 <div className="card-actions justify-end">
-                    <button className="btn btn-primary">Listen</button>
+                    <button className="btn btn-primary">Book Now</button>
                 </div>
             </div>
         </div>

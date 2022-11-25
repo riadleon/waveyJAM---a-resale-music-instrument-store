@@ -1,11 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { useLoaderData, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../../contexts/AuthProvider';
 import Loading from '../../Shared/Loading/Loading';
 
 const AddProduct = () => {
+    const { user } = useContext(AuthContext);
 
 
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -43,7 +45,8 @@ const AddProduct = () => {
                         location: data.location,
                         resalePrice: data.resalePrice,
                         originalPrice: data.originalPrice,
-                        sellerName: data.sname,
+                        email: data.email.value,
+                        // email: ,
                         number: data.number,
                         uses: data.uses,
                         time: data.time,
@@ -117,9 +120,9 @@ const AddProduct = () => {
                         {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
                     </div>
                     <div className="form-control w-full max-w-xs">
-                        <label className="label"> <span className="label-text">Seller Name</span></label>
-                        <input type="text" {...register("sname", {
-                            required: "Seller Name is Required"
+                        <label className="label"> <span className="label-text">Seller Email</span></label>
+                        <input type="email" {...register("email", {
+                            required: "email is Required"
                         })} className="flex-1 py-2 border-b-2 border-gray-400 focus:border-primary placeholder-gray-400 outline-none" />
                         {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
                     </div>
