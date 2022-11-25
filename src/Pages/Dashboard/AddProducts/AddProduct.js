@@ -45,11 +45,12 @@ const AddProduct = () => {
                         location: data.location,
                         resalePrice: data.resalePrice,
                         originalPrice: data.originalPrice,
-                        email: data.email.value,
+                        email: data.email,
                         // email: ,
                         number: data.number,
                         uses: data.uses,
                         time: data.time,
+                        sname: data.sname,
 
 
 
@@ -121,8 +122,15 @@ const AddProduct = () => {
                     </div>
                     <div className="form-control w-full max-w-xs">
                         <label className="label"> <span className="label-text">Seller Email</span></label>
-                        <input type="email" {...register("email", {
+                        <input defaultValue={user.email} type="email" {...register("email", {
                             required: "email is Required"
+                        })} className="flex-1 py-2 border-b-2 border-gray-400 focus:border-primary placeholder-gray-400 outline-none" />
+                        {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
+                    </div>
+                    <div className="form-control w-full max-w-xs">
+                        <label className="label"> <span className="label-text">Seller Name</span></label>
+                        <input type="text" {...register("sname", {
+                            required: "Name is Required"
                         })} className="flex-1 py-2 border-b-2 border-gray-400 focus:border-primary placeholder-gray-400 outline-none" />
                         {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
                     </div>

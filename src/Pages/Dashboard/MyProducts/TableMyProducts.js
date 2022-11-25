@@ -1,7 +1,7 @@
 import React from 'react';
 
 const TableMyProducts = ({ product }) => {
-    const { image, location, name, number, originalPrice, resalePrice, sellerName, time, uses, _id } = product;
+    const { image, location, name, number, originalPrice, resalePrice, email, time, uses, _id, sname } = product;
     return (
         <tr>
 
@@ -19,21 +19,26 @@ const TableMyProducts = ({ product }) => {
                 </div>
             </td>
             <td>
-                {sellerName}
+                {sname}
+
+
                 <br />
                 {/* <span className="badge badge-ghost badge-sm">Desktop Support Technician</span> */}
             </td>
+            <td> {email}</td>
             <td>{uses}</td>
             <td>{location}</td>
             <td>{resalePrice}</td>
             <td>{originalPrice}</td>
             <td>{time} </td>
-            {/* <th>
-                <button onClick={() => handleEdit(_id)} className="btn btn-ghost btn-xs bg-teal-800 text-white">Edit</button>
-                <button onClick={() => handleDelete(_id)} className="btn btn-ghost btn-xs bg-rose-800 text-white">Delete</button>
-            </th> */}
+            <th>
+                <button  className="btn btn-ghost btn-xs bg-rose-800 text-white">Delete</button>
+            </th>
         </tr>
     );
 };
 
 export default TableMyProducts;
+
+
+// onClick={() => handleDelete(_id)}

@@ -58,7 +58,8 @@ const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/myOrders',
-                element: <MyOrders></MyOrders>
+                element: <MyOrders></MyOrders>,
+                loader: () => fetch('http://localhost:8000/productBooking')
             },
             {
                 path: '/dashboard/addProducts',
@@ -68,6 +69,7 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/allBuyers',
                 element: <AllBuyers></AllBuyers>,
+                // loader: () => fetch('http://localhost:8000/users?role=buyer'),
 
             },
             {

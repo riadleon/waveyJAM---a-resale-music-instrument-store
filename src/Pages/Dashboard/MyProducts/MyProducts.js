@@ -15,6 +15,7 @@ const MyProducts = () => {
 
                             <th>Product Name</th>
                             <th>Seller Name</th>
+                            <th>Seller email</th>
                             <th>Time Of Uses</th>
                             <th>Location</th>
                             <th> Resale Price</th>

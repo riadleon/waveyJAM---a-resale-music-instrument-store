@@ -16,16 +16,14 @@ const ModalCategoryProduct = ({ product, setProduct, refetch }) => {
 
         const productBooking = {
             product: productName,
-            Seller: name,
+            Buyer: name,
             email,
             phone,
             resalePrice,
             location
         }
 
-        // TODO: send data to the server
-        // and once data is saved then close the modal 
-        // and display success toast
+
         fetch('http://localhost:8000/productBooking', {
             method: 'POST',
             headers: {
