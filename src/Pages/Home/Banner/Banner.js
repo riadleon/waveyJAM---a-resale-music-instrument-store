@@ -13,7 +13,7 @@ const Banner = () => {
                 <div className="hero-content text-center text-neutral-content">
                     <div className="max-w-md">
                         <h1 className="mb-5 text-5xl font-bold">Used <span className='text-primary'>Music</span> Instruments</h1>
-                        <p className="mb-5">Here You will find huge range of used Musical Instruments from worlds famous brands and also in reasonable price</p>
+                        <p className="mb-5"> <strong className=' font-bold'>Here You will find huge range of used Musical Instruments from worlds famous brands and also in reasonable price</strong> </p>
                         <div>
                             <button className="btn btn-primary mx-3">Shop Now</button>
                             <button className="btn btn-secondary">View Items</button>
