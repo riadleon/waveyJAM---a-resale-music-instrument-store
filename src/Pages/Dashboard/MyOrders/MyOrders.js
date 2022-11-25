@@ -51,7 +51,9 @@ const MyOrders = () => {
 
 
                 </table>
+
             </div>
+
         </div>
     );
 };
