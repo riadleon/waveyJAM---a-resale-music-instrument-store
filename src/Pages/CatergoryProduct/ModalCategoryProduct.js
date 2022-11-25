@@ -3,7 +3,7 @@ import toast from 'react-hot-toast';
 import { AuthContext } from '../../contexts/AuthProvider';
 
 const ModalCategoryProduct = ({ product, setProduct, refetch }) => {
-    const { name: productName, originalPrice, resalePrice } = product;
+    const { name: productName, originalPrice, resalePrice, image } = product;
     const { user } = useContext(AuthContext);
 
     const handleProductBooking = event => {
@@ -16,6 +16,7 @@ const ModalCategoryProduct = ({ product, setProduct, refetch }) => {
 
         const productBooking = {
             product: productName,
+            image: image,
             Buyer: name,
             email,
             phone,
@@ -53,6 +54,7 @@ const ModalCategoryProduct = ({ product, setProduct, refetch }) => {
                 <div className="modal-box relative">
                     <label htmlFor="booking-modal" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
                     <h3 className="">Product Name : <span className='text-lg font-bold'>{productName}</span> </h3>
+                    <img src={image} alt="product" />
                     <form onSubmit={handleProductBooking} className='grid grid-cols-1 gap-3 mt-10'>
                         <label htmlFor="name">Name</label>
                         <input name="name" type="text" defaultValue={user?.displayName} disabled placeholder="Your Name" className="input w-full input-bordered" />
