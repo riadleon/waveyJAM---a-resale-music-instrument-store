@@ -5,30 +5,34 @@ import toast from 'react-hot-toast';
 
 const MyProducts = () => {
     const products = useLoaderData();
-    console.log(products);
-    // const [refresh, setRefresh] = useState(false);
+    // console.log(products);
+    const [refresh, setRefresh] = useState(false);
 
-   
+    const advertise = {
+        products
+    }
 
-    // const handleAddAdvertise = () => {
-    //     fetch('http://localhost:8000/advertise', {
-    //         method: "POST",
-    //         // headers: {
-    //         //     authorization: `Bearer ${localStorage.getItem(' secureWeb-token')}`
-    //         // }
-    //         body: JSON.stringify(products)
-    //     })
-    //         .then(res => res.json())
-    //         .then(data => {
-    //             console.log(data);
-    //             if (data) {
-    //                 toast.success("added to advertise list");
-    //                 setRefresh(!refresh);
-    //             } else {
-    //                 toast.error("Failed to add in advertise list");
-    //             }
-    //         }).catch(err => toast.error(err.message))
-    // }
+
+
+    const handleAddAdvertise = () => {
+        fetch('http://localhost:8000/advertise', {
+            method: "POST",
+            // headers: {
+            //     authorization: `Bearer ${localStorage.getItem(' secureWeb-token')}`
+            // }
+            body: JSON.stringify(advertise)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data) {
+                    toast.success("added to advertise list");
+                    setRefresh(!refresh);
+                } else {
+                    toast.error("Failed to add in advertise list");
+                }
+            }).catch(err => toast.error(err.message))
+    }
     return (
         <div>
             <h2 className='text-4xl text-center'>My Products </h2>
@@ -51,7 +55,7 @@ const MyProducts = () => {
                             products.map(product => <TableMyProducts
                                 key={product._id}
                                 product={product}
-                              
+                                handleAddAdvertise={handleAddAdvertise}
                             ></TableMyProducts>)
                         }
 

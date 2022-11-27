@@ -7,9 +7,9 @@ const useToken = email => {
             fetch(`http://localhost:8000/jwt?email=${email}`)
                 .then(res => res.json())
                 .then(data => {
-                    if (data.accessToken) {
-                        localStorage.setItem('accessToken', data.accessToken);
-                        setToken(data.accessToken);
+                    if (data.waveyToken) {
+                        localStorage.setItem('waveyToken', data.waveyToken);
+                        setToken(data.waveyToken);
                     }
                 });
         }
