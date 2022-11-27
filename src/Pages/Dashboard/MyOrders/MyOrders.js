@@ -42,6 +42,7 @@ const MyOrders = () => {
                         {
                             bookings.map(booking =>
                                 <MyOrdersCard
+                                    key={booking._id}
                                     booking={booking}
                                 ></MyOrdersCard>)
                         }

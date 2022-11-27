@@ -1,9 +1,10 @@
 import React from 'react';
 import { FaPaypal } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const MyOrdersCard = ({ booking }) => {
     console.log(booking)
-    const { image, product, resalePrice } = booking;
+    const { image, product, resalePrice, _id } = booking;
     return (
         <tr>
 
@@ -24,7 +25,7 @@ const MyOrdersCard = ({ booking }) => {
             <td>{resalePrice}</td>
 
             <th>
-                <button className="btn btn-ghost btn-xs bg-cyan-800 text-white"> <FaPaypal></FaPaypal> Pay</button>
+                <Link to={`/dashboard/payment/${booking._id}`}> <button to className="btn btn-ghost btn-xs bg-cyan-800 text-white"> <FaPaypal></FaPaypal> Pay</button></Link>
             </th>
         </tr>
     );
