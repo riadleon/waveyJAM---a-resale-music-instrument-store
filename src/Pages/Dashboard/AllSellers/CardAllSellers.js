@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CardAllSellers = ({ seller }) => {
+const CardAllSellers = ({ seller, isAdmin }) => {
     const { name, email } = seller;
     return (
         <tr>
@@ -23,7 +23,12 @@ const CardAllSellers = ({ seller }) => {
 
             <th>
                 <button className="btn btn-ghost btn-xs bg-rose-800 text-white mx-4">Delete</button>
-                <button className="btn btn-ghost btn-xs bg-cyan-800 text-white">Verify</button>
+                {/* {
+                    isAdmin &&
+                    <button className="btn btn-ghost btn-xs bg-rose-800 text-white mx-4">Delete</button>
+                    : 
+                    
+                } */}
             </th>
         </tr>
     );

@@ -51,6 +51,7 @@ const AddProduct = () => {
                         uses: data.uses,
                         time: data.time,
                         sname: data.sname,
+                        condition: data.condition,
 
 
 
@@ -168,6 +169,13 @@ const AddProduct = () => {
                         <label className="label"> <span className="label-text">Posted Time</span></label>
                         <input type="time" {...register("time", {
                             required: "Years of uses"
+                        })} className="flex-1 py-2 border-b-2 border-gray-400 focus:border-primary placeholder-gray-400 outline-none" />
+                        {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
+                    </div>
+                    <div className="form-control w-full max-w-xs">
+                        <label className="label"> <span className="label-text">Condition</span></label>
+                        <input type="text" {...register("condition", {
+                            required: "condition must"
                         })} className="flex-1 py-2 border-b-2 border-gray-400 focus:border-primary placeholder-gray-400 outline-none" />
                         {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
                     </div>
