@@ -25,7 +25,7 @@ const MyOrdersCard = ({ booking }) => {
             <td>{resalePrice}</td>
 
             <th>
-                <Link to={`/dashboard/payment/${booking._id}`}> <button to className="btn btn-ghost btn-xs bg-cyan-800 text-white"> <FaPaypal></FaPaypal> Pay</button></Link>
+                <Link > <button to className="btn btn-ghost btn-xs bg-cyan-800 text-white"> <FaPaypal></FaPaypal> Pay</button></Link>
             </th>
         </tr>
     );

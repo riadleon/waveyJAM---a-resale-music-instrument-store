@@ -20,7 +20,7 @@ const TableMyProducts = ({ product }) => {
     }
 
     const handleAddAdvertise = () => {
-        fetch('http://localhost:8000/advertise', {
+        fetch('https://wavey-jam-a12-server.vercel.app/advertise', {
             method: "POST",
             // headers: {
             //     authorization: `Bearer ${localStorage.getItem(' secureWeb-token')}`

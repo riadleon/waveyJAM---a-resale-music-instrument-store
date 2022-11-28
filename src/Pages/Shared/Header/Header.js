@@ -25,6 +25,10 @@ const Header = () => {
 
     return (
         <div className="navbar bg-transparent text-primary ">
+            <label htmlFor="dashboard-drawer" tabIndex={2} className="btn btn-ghost lg:hidden">
+                <FaHamburger className=' h-5 w-5'></FaHamburger>
+
+            </label>
             <div className="navbar-start {...(isHome && navBg ? { backgroundColor: '#00008' : {})}" >
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -55,10 +59,7 @@ const Header = () => {
             <div className="navbar-end">
                 <Link to='/blogs' className="btn">Blogs</Link>
             </div>
-            <label htmlFor="dashboard-drawer" tabIndex={2} className="btn btn-ghost lg:hidden">
-                <FaHamburger className=' h-5 w-5'></FaHamburger>
-                
-            </label>
+
         </div>
     );
 };

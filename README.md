@@ -1,3 +1,34 @@
+## Website Name: waveyJAM
+
+## Live Site:
+
+Client : https://wavey-jam.web.app/
+Server: https://wavey-jam-a12-server.vercel.app/
+admin: ->
+mail: spider16@mail.com
+password: Spider1234#
+
+## About the website:
+(•) Its a website for used msuical instruments
+(•) Anybody around the world can visit it and buy
+(•) Its responsive and mobile friendly.
+(•) You can switch in to dark themes quite easily.
+(•) If you have Any Query just contact us
+
+
+## Frameworks and libraries :
+
+(•) React js
+(•) tailwind css
+(•) react tootip
+(•) react-image
+(•) react-hot-toaster
+(•) react-icons
+(•) react-query
+(•) mongodb
+(•) express
+(•) vercel
+(•) mamba ui
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

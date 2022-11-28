@@ -25,7 +25,7 @@ const ModalCategoryProduct = ({ product, setProduct, refetch }) => {
         }
 
 
-        fetch('http://localhost:8000/productBooking', {
+        fetch('https://wavey-jam-a12-server.vercel.app/productBooking', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

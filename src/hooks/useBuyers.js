@@ -5,7 +5,7 @@ const useBuyers = email => {
     const [isBuyerLoading, setBuyerLoading] = useState(true);
     useEffect(() => {
         if (email) {
-            fetch(`http://localhost:8000/users/buyer/${email}`)
+            fetch(`https://wavey-jam-a12-server.vercel.app/users/buyer/${email}`)
                 .then(res => res.json())
                 .then(data => {
                     console.log(data);

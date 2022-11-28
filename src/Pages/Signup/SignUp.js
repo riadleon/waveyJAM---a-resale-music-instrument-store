@@ -40,11 +40,11 @@ const SignUp = () => {
                 console.log(user);
                 toast('User Created Successfully.')
                 const userInfo = {
-                    displayName: data.name
+                    displayName: data.sname
                 }
                 updateUser(userInfo)
                     .then(() => {
-                        saveUser(data.name, data.email, data.role, data.status);
+                        saveUser(data.sname, data.email, data.role, data.status);
                     })
                     .catch(err => console.log(err));
             })
@@ -56,7 +56,7 @@ const SignUp = () => {
 
     const saveUser = (name, email, role, status) => {
         const user = { name, email, role, status };
-        fetch('http://localhost:8000/users', {
+        fetch('https://wavey-jam-a12-server.vercel.app/users', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -80,7 +80,7 @@ const SignUp = () => {
                 <form onSubmit={handleSubmit(handleSignUp)}>
                     <div className="form-control w-full max-w-xs">
                         <label className="label"> <span className="label-text">Name</span></label>
-                        <input type="text" {...register("name", {
+                        <input type="text" {...register("sname", {
                             required: "Name is Required"
                         })} className="input input-bordered w-full max-w-xs" />
                         {errors.name && <p className='text-red-500'>{errors.name.message}</p>}

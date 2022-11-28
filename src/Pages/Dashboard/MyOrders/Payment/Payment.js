@@ -6,7 +6,7 @@ import { useLoaderData } from 'react-router-dom';
 import CheckoutForm from './CheckoutForm';
 
 
-const stripePromise = loadStripe('pk_test_51M6bHZHIyRQBkvVpOWQMJSP8CJXNqEs45WWUdesU10qea1fhtqNT33WJR01secCzLAO2I5PsQltBsBxcGgpvdgAD00XnLOehJh');
+const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PK);
 
 const Payment = () => {
     const booking = useLoaderData();

@@ -1,7 +1,7 @@
 import React from 'react';
 
-const CardAllSellers = ({ seller, isAdmin, handleStatusUpdate }) => {
-    const { name, email, status } = seller;
+const CardAllSellers = ({ isAdmin, handleStatusUpdate, user }) => {
+    const { name, email, status } = user;
     return (
         <tr>
 
@@ -24,7 +24,13 @@ const CardAllSellers = ({ seller, isAdmin, handleStatusUpdate }) => {
 
             <td>
                 {
-                    status === 'requested' && (<button onClick={() => handleStatusUpdate(seller)} className="btn btn-ghost btn-xs bg-cyan-800 text-white mx-4">Verify</button>)
+                    status === 'requested' ?
+                        (<button onClick={() => handleStatusUpdate(user)} className="btn btn-ghost btn-xs bg-cyan-800 text-white mx-4">Verify</button>)
+                        :
+                        (<button className="btn btn-ghost btn-disabled btn-xs bg-cyan-800 text-white mx-4">Verified</button>)
+
+
+
                 }
             </td>
 

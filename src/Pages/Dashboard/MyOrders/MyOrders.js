@@ -10,7 +10,7 @@ const MyOrders = () => {
     const [bookings, getBookings] = useState([]);
     const { user } = useContext(AuthContext)
 
-    const url = 'http://localhost:8000/';
+    const url = 'https://wavey-jam-a12-server.vercel.app/';
 
     useEffect(() => {
         getAllBookings();

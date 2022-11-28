@@ -16,7 +16,7 @@ const MyProducts = () => {
 
 
     // const handleAddAdvertise = () => {
-    //     fetch('http://localhost:8000/advertise', {
+    //     fetch('https://wavey-jam-a12-server.vercel.app/advertise', {
     //         method: "POST",
     //         // headers: {
     //         //     authorization: `Bearer ${localStorage.getItem(' secureWeb-token')}`
@@ -56,7 +56,7 @@ const MyProducts = () => {
                             products.map(product => <TableMyProducts
                                 key={product._id}
                                 product={product}
-                                // handleAddAdvertise={handleAddAdvertise}
+                            // handleAddAdvertise={handleAddAdvertise}
                             ></TableMyProducts>)
                         }
 

@@ -35,7 +35,7 @@ const router = createBrowserRouter([
             {
                 path: '/categories/:id',
                 element: <CategoryProduct></CategoryProduct>,
-                loader: ({ params }) => fetch(`http://localhost:8000/categories/${params.id}`)
+                loader: ({ params }) => fetch(`https://wavey-jam-a12-server.vercel.app/categories/${params.id}`)
                 ,
             },
             {
@@ -60,7 +60,7 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/myOrders',
                 element: <MyOrders></MyOrders>,
-                loader: () => fetch('http://localhost:8000/productBooking')
+                loader: () => fetch('https://wavey-jam-a12-server.vercel.app/productBooking')
             },
             {
                 path: '/dashboard/addProducts',
@@ -70,7 +70,7 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/allBuyers',
                 element: <AllBuyers></AllBuyers>,
-                // loader: () => fetch('http://localhost:8000/users?role=buyer'),
+                // loader: () => fetch('https://wavey-jam-a12-server.vercel.app/users?role=buyer'),
 
             },
             {
@@ -86,12 +86,12 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/myProduct',
                 element: <MyProducts></MyProducts>,
-                loader: () => fetch('http://localhost:8000/products'),
+                loader: () => fetch('https://wavey-jam-a12-server.vercel.app/products'),
             },
             {
                 path: '/dashboard/payment/:id',
                 element: <Payment></Payment>,
-                loader: ({params}) => fetch(`http://localhost:8000/productBooking/${params.id}}`),
+                loader: ({ params }) => fetch(`https://wavey-jam-a12-server.vercel.app/productBooking/${params.id}}`),
             },
 
         ]

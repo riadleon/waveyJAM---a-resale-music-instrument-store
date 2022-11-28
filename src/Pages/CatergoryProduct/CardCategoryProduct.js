@@ -1,7 +1,9 @@
 import React from 'react';
+import { BeakerIcon } from '@heroicons/react/24/solid'
+import { CheckmarkIcon } from 'react-hot-toast';
 
 const CardCategoryProduct = ({ product, setProduct }) => {
-    const { image, location, name, number, originalPrice, resalePrice, sellerName, time, uses, _id } = product;
+    const { image, location, name, number, originalPrice, resalePrice, sname, time, uses, _id } = product;
 
 
     return (
@@ -12,7 +14,9 @@ const CardCategoryProduct = ({ product, setProduct }) => {
                 <p>Location: {location}</p>
                 <p>Original Price: ${originalPrice}</p>
                 <p>Resale Price: ${resalePrice}</p>
-                <p>Seller Name: {sellerName}</p>
+                <p>Seller Name: {sname} <span><CheckmarkIcon></CheckmarkIcon></span>
+                </p>
+
                 <p>Phone Number: {number}</p>
                 <p>Years Of Uses: {uses}Years</p>
                 <p>Posted Time: {time}</p>

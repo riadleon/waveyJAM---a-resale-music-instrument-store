@@ -1,44 +1,53 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider';
 import useAdmin from '../../../hooks/useAdmin';
 import Loading from '../../Shared/Loading/Loading';
 import CardAllSellers from './CardAllSellers';
+import { deleteUsers, getAllUsers, verifyStatus } from '../../../api/User'
+import Spinner from '../../../Spinner/Spinner';
 
 const AllSellers = () => {
     const { user } = useContext(AuthContext);
     const [isAdmin] = useAdmin(user?.email)
-    const { data: sellers, isLoading } = useQuery({
-        queryKey: ['seller'],
-        queryFn: async () => {
-            const res = await fetch('http://localhost:8000/users?role=seller');
-            const data = await res.json();
-            console.log(data);
-            return data;
-        }
-    })
+    // const { data: sellers, isLoading } = useQuery({
+    //     queryKey: ['seller'],
+    //     queryFn: async () => {
+    //         const res = await fetch('https://wavey-jam-a12-server.vercel.app/users?role=seller');
+    //         const data = await res.json();
+    //         console.log(data);
+    //         return data;
+    //     }
+    // })
 
-    if (isLoading) {
-        return <Loading></Loading>
+    // if (isLoading) {
+    //     return <Loading></Loading>
+    // }
+    const [loading, setLoading] = useState(false)
+    const [users, setUsers] = useState([])
+    useEffect(() => {
+        getUsers()
+    }, [])
+
+
+    const handleStatusUpdate = user => {
+        verifyStatus(user).then(data => {
+            console.log(data);
+            getUsers()
+        })
+
+    }
+    const handleDelete = user => {
+        deleteUsers(user);
     }
 
-
-    const handleStatusUpdate = () => {
-        delete user._id
-        fetch(`http://localhost:8000/users/${user?.email}`, {
-            method: 'PUT',
-            headers: {
-                'content-type': 'application/json',
-                // authorization: `Bearer ${localStorage.getItem('genius-token')}`
-            },
-            body: JSON.stringify({ status: 'Verified' })
+    const getUsers = () => {
+        setLoading(true)
+        getAllUsers().then(data => {
+            setUsers(data)
+            setLoading(false)
         })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-
-            })
     }
 
 
@@ -60,17 +69,41 @@ const AllSellers = () => {
                         </tr>
                     </thead>
                     <tbody>
+                        {users &&
+                            users.map((user, i) => (
+                                <tr key={i}>
+                                    <td className='px-5 py-5 border-b   text-sm'>
+                                        <p className=' whitespace-no-wrap'>
+                                            {user.name}
+                                        </p>
+                                    </td>
 
-                        {
-                            sellers.map(seller => <CardAllSellers
-                                key={seller._id}
-                                seller={seller}
-                                isAdmin={isAdmin}
-                                handleStatusUpdate={handleStatusUpdate}
-                            ></CardAllSellers>)
-                        }
-
-
+                                    <td className='px-5 py-5 border-b   text-sm'>
+                                        <p className=' whitespace-no-wrap'>
+                                            {user.email}
+                                        </p>
+                                    </td>
+                                    <td className='px-5 py-5 border-b   text-sm'>
+                                        {user?.status === 'requested' && (
+                                            <span
+                                                onClick={() => handleStatusUpdate(user)}
+                                                className='relative cursor-pointer inline-block px-3 py-1 font-semibold text-green-900 leading-tight'
+                                            >
+                                                <span
+                                                    aria-hidden='true'
+                                                    className='absolute inset-0 bg-green-200 opacity-50 rounded-full'
+                                                ></span>
+                                                <span className='relative'>
+                                                    {loading ? <Spinner></Spinner> : ' Approve Request'}
+                                                </span>
+                                            </span>
+                                        )}
+                                    </td>
+                                    <td>
+                                        <button onClick={handleDelete}>Delete</button>
+                                    </td>
+                                </tr>
+                            ))}
                     </tbody>
 
 

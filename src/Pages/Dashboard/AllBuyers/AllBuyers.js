@@ -10,7 +10,7 @@ const AllBuyers = () => {
     const { data: buyers, isLoading } = useQuery({
         queryKey: ['buyer'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:8000/users?role=buyer');
+            const res = await fetch('https://wavey-jam-a12-server.vercel.app/users?role=buyer');
             const data = await res.json();
             console.log(data);
             return data;

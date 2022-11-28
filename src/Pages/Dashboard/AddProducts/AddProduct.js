@@ -19,7 +19,7 @@ const AddProduct = () => {
     const { data: categories, isLoading } = useQuery({
         queryKey: ['category'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:8000/categories');
+            const res = await fetch('https://wavey-jam-a12-server.vercel.app/categories');
             const data = await res.json();
             return data;
         }
@@ -58,7 +58,7 @@ const AddProduct = () => {
                     }
 
                     // save product information to the database
-                    fetch('http://localhost:8000/products', {
+                    fetch('https://wavey-jam-a12-server.vercel.app/products', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json',
