@@ -23,7 +23,7 @@ const CardAllBuyers = ({ buyer }) => {
 
             <th>
                 <button className="btn btn-ghost btn-xs bg-rose-800 text-white mx-4">Delete</button>
-                <button className="btn btn-ghost btn-xs bg-cyan-800 text-white">Verify</button>
+               
             </th>
         </tr>
     );

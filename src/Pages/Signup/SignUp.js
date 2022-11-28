@@ -44,7 +44,7 @@ const SignUp = () => {
                 }
                 updateUser(userInfo)
                     .then(() => {
-                        saveUser(data.name, data.email, data.role);
+                        saveUser(data.name, data.email, data.role, data.status);
                     })
                     .catch(err => console.log(err));
             })
@@ -54,8 +54,8 @@ const SignUp = () => {
             });
     }
 
-    const saveUser = (name, email, role) => {
-        const user = { name, email, role };
+    const saveUser = (name, email, role, status) => {
+        const user = { name, email, role, status };
         fetch('http://localhost:8000/users', {
             method: 'POST',
             headers: {
@@ -94,6 +94,13 @@ const SignUp = () => {
                             <option value="seller">Seller</option>
                         </select>
                         {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
+                    </div>
+                    <div className="form-control w-full max-w-xs">
+                        <label className="label"> <span className="label-text">Verify</span></label>
+                        <input defaultValue='requested' type="text" {...register("status", {
+                            required: true
+                        })} className="input input-bordered w-full max-w-xs" />
+                        {errors.email && <p className='text-red-500'>{errors.email.message}</p>}
                     </div>
                     <div className="form-control w-full max-w-xs">
                         <label className="label"> <span className="label-text">Email</span></label>
