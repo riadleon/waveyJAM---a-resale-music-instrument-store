@@ -1,5 +1,6 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { AuthContext } from '../../../contexts/AuthProvider';
 import MyOrdersCard from './MyOrdersCard';
 // import { useLoaderData } from 'react-router-dom';
 
@@ -7,6 +8,7 @@ const MyOrders = () => {
     // const { booking } = useLoaderData();
     // console.log(booking);
     const [bookings, getBookings] = useState([]);
+    const { user } = useContext(AuthContext)
 
     const url = 'http://localhost:8000/';
 
@@ -15,9 +17,10 @@ const MyOrders = () => {
     }, [])
 
     const getAllBookings = () => {
-        axios.get(`${url}productBooking`)
+        axios.get(`${url}productBooking?email=${user?.email}`)
             .then((response) => {
                 const allBookings = response.data;
+                console.log(allBookings);
                 getBookings(allBookings);
             })
             .catch(error => console.error(`Error: ${error}`));
